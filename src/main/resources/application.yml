@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: labb3
+
+weather:
+  smhi:
+    base-url: https://opendata-download-metfcst.smhi.se/api
+    endpoint: /category/pmp3g/version/2/geotype/point/lon/18.0300/lat/59.3110/data.json
+
+  met:
+    base-url: https://api.met.no/weatherapi/locationforecast/2.0
+    endpoint: /compact?lat=59.3110&lon=18.0300
+
+  owm:
+    base-url: https://api.openweathermap.org/data/2.5
+    endpoint: /forecast?lat=59.3110&lon=18.0300&units=metric&appid=201c92da77977ac5e894c0ef73adf95f
+

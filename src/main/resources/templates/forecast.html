@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Forecast</title>
+</head>
+<body>
+<h1>Optimal väderprognos för Liljeholmen från <span th:text="${forecast.origin}"></span> <span th:text="${#temporals.format(forecast.timestamp, 'yyyy-MM-dd HH:mm')}"></span></h1>
+<p>Temperatur: <strong th:text="${forecast.temp}"></strong> °C</p>
+<p>Relativ luftfuktighet: <strong th:text="${forecast.humidity}"></strong> %</p>
+</body>
+</html>
