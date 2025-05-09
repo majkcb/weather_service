@@ -5,8 +5,37 @@
   <title>Weather Forecast</title>
 </head>
 <body>
-<h1>Optimal väderprognos för Liljeholmen från <span th:text="${forecast.origin}"></span> <span th:text="${#temporals.format(forecast.timestamp, 'yyyy-MM-dd HH:mm')}"></span></h1>
+
+<h1>Optimal väderprognos för Liljeholmen från
+  <span th:text="${forecast.origin}"></span>
+  <span th:text="${#temporals.format(forecast.timestamp, 'yyyy-MM-dd HH:mm')}"></span>
+</h1>
+
 <p>Temperatur: <strong th:text="${forecast.temp}"></strong> °C</p>
 <p>Relativ luftfuktighet: <strong th:text="${forecast.humidity}"></strong> %</p>
+
+<hr/>
+
+<h2>Jämförelse mellan alla vädertjänster</h2>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Tjänst</th>
+    <th>Tidpunkt</th>
+    <th>Temperatur (°C)</th>
+    <th>Luftfuktighet (%)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="f : ${allForecasts}">
+    <td th:text="${f.origin}"></td>
+    <td th:text="${#temporals.format(f.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${f.temp}"></td>
+    <td th:text="${f.humidity}"></td>
+  </tr>
+  </tbody>
+</table>
+
 </body>
 </html>

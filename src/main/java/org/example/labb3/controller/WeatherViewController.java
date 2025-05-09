@@ -14,8 +14,10 @@ public class WeatherViewController {
 
     @GetMapping("/forecast")
     public String showForecast(Model model) {
-        var forecast = weatherService.getOptimizedForecast();
-        model.addAttribute("forecast", forecast);
+        var comparisonResult = weatherService.getForecastComparison();
+        model.addAttribute("forecast", comparisonResult.bestForecast());
+        model.addAttribute("allForecasts", comparisonResult.allForecasts());
         return "forecast";
     }
+
 }

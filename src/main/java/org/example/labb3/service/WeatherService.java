@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.labb3.client.met.METClient;
 import org.example.labb3.client.owm.OWMClient;
 import org.example.labb3.client.smhi.SMHIClient;
+import org.example.labb3.dto.WeatherComparisonResult;
 import org.example.labb3.dto.WeatherForecast;
 import org.example.labb3.model.met.METResponse;
 import org.example.labb3.model.met.MetTimeseries;
@@ -32,14 +33,23 @@ public class WeatherService {
     private final OWMClient owmClient;
 
     public WeatherForecast getOptimizedForecast() {
+        return getForecastComparison().bestForecast();
+    }
+
+    public WeatherComparisonResult getForecastComparison() {
         WeatherForecast smhi = getSMHIForecast();
         WeatherForecast met = getMETForecast();
         WeatherForecast owm = getOWMForecast();
 
-        return Stream.of(smhi, met, owm)
+        List<WeatherForecast> allForecasts = List.of(smhi, met, owm);
+
+        WeatherForecast best = allForecasts.stream()
                 .max(Comparator.comparingDouble(WeatherForecast::temp))
                 .orElseThrow(() -> new RuntimeException("No forecasts available"));
+
+        return new WeatherComparisonResult(best, allForecasts);
     }
+
 
     private WeatherForecast getSMHIForecast() {
         SMHIResponse response = smhiClient.getForecast();
