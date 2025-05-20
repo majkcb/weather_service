@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<h1>Optimal väderprognos för Liljeholmen från
+<h1>
+  Optimal väderprognos för Liljeholmen från
   <span th:text="${forecast.origin}"></span>
   <span th:text="${#temporals.format(forecast.timestamp, 'yyyy-MM-dd HH:mm')}"></span>
 </h1>
@@ -18,7 +19,7 @@
 
 <h2>Jämförelse mellan alla vädertjänster</h2>
 
-<table border="1">
+<table>
   <thead>
   <tr>
     <th>Tjänst</th>
